@@ -1,0 +1,5 @@
+venv/
+Pipfile.lock
+.env
+# Clothing-Shop/issues/migrations/
+# src/users/migrations/

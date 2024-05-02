@@ -1,0 +1,27 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' 
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+          
+      - name: Run flake8 linting
+        run: pipenv run flake8
+
+      - name: Run isort
+        run: pipenv run isort .
+
+      - name: Run black
+        run: pipenv run black .
