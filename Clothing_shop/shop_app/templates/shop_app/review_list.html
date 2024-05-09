@@ -1,0 +1,113 @@
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPstage</title>
+    <style>
+        /* Додайте власні стилі тут для коригування вигляду */
+        body {
+            background-color: #222; /* Колір фону, змініть за потребою */
+            color: #fff; /* Колір тексту, змініть за потребою */
+            font-family: 'Arial', sans-serif; /* Шрифт, змініть за потребою */
+        }
+
+        h1 {
+            color: #d9534f; /* Колір заголовку, змініть за потребою */
+        }
+
+        .review-card {
+            width: 60rem; /* Розмір картки, можна змінювати за необхідністю */
+            margin: auto;
+            margin-top: 50px;
+            background-color: #333; /* Колір картки, змініть за потребою */
+            border: 1px solid #555; /* Колір обрамлення картки, змініть за потребою */
+            border-radius: 8px; /* Радіус кутів картки, змініть за потребою */
+            display: flex; /* Встановлення блоку в режим "flex" */
+        }
+
+        .review-card img {
+            max-width: 50%; /* Максимальна ширина зображення */
+            border-top-left-radius: 8px; /* Заокруглення верхнього лівого кута зображення */
+            border-bottom-left-radius: 8px; /* Заокруглення нижнього лівого кута зображення */
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-text {
+            color: #ddd; /* Колір тексту в картці, змініть за потребою */
+            width: 100%; /* Ширина текстового блоку, змініть за потребою */
+        }
+
+        .text-muted {
+            color: #888; /* Колір тексту з датою, змініть за потребою */
+            text-transform: lowercase; /* Перетворення тексту на малі літери */
+            margin-top: 10px; /* Відступ зверху для дати */
+            
+        }
+
+        .telegram-button {
+            color: #888;
+            margin-top: 10px; /* Відступ зверху для кнопки */
+            align-self: flex-end; /* Розміщення кнопки в правому нижньому куті блоку */
+        }
+    </style>
+</head>
+<body class="container mt-5">
+    <h1 class="display-4">Магазин етно одягу</h1>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#"style="font-size: 2rem; font-weight: bold; color: red; text-decoration: none; margin-right: 20px;">Чоловічий</a>
+            
+                <a class="nav-link" href="#"style="font-size: 2rem; font-weight: bold; color: red; text-decoration: none; margin-right: 20px;">Жіночій</a>
+
+                <a class="nav-link" href="#"style="font-size: 2rem; font-weight: bold; color: red; text-decoration: none;margin-right: 1000px;">Дитячий</a>
+
+                <a class="nav-link" href="#"style="font-size: 2rem; font-weight: bold; color: red; text-decoration: none;">Реєстраціяй</a>
+            </li>
+        </ul>
+    </nav>
+    
+    {% for review in reviews %}
+        <div class="card my-3 review-card"style="margin-top: 70px;">
+            <img src="{% static review.image %}" alt="Review Image" class="card-img-top">
+            <div class="card-body">
+                <p class="card-text">{{ review.comment }}</p>
+                <p class="card-text text-muted"style="margin-top: 300px;">{{ review.date }}</p>
+                <a href="https://t.me/ds0903" class="btn btn-primary telegram-button" target="_blank">Telegram</a>
+            </div>
+
+
+        </div>
+    {% endfor %}
+
+    <!-- Додайте Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WybF0/R5X5Z9AMbQK9IbbVdU8hBDf" crossorigin="anonymous"></script>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-top: 200px;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#"style="font-size: 2rem; font-weight: bold; color: red; text-decoration: none; margin-right: 400px;">Тут будуть контакти</a>
+            
+                <a class="nav-link" href="#"style="font-size: 2rem; font-weight: bold; color: red; text-decoration: none; margin-right: 300px;">Тут теж будуть контакти</a>
+
+                <a class="nav-link" href="#"style="font-size: 2rem; font-weight: bold; color: red; text-decoration: none;">І Тут будуть контакти</a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

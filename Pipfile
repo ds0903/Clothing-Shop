@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 django = "==4.2.11"
+django-bootstrap4 = "*"
 
 [dev-packages]
 flake8 = "*"
