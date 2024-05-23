@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин етно одягу</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #ddd;
+            color: #000;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar-nav {
+            display: flex;
+            
+            justify-content: center;
+            width: 100%;
+            
+            border-top: 2px solid #000;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #d9534f;
+        }
+
+        .card {
+            width: 60rem;
+            margin: auto;
+            margin-top: 50px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+        }
+
+        .card img {
+            max-width: 50%;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-text {
+            color: #333;
+        }
+
+        .text-muted {
+            color: #888;
+            text-transform: lowercase;
+            margin-top: 10px;
+        }
+
+        .telegram-button {
+            color: #888;
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+
+        .contacts {
+            margin-top: 50px;
+            text-align: center;
+            background-color: #f0f0f0; /* молочний фон */
+            padding: 50px;
+            border-top: 2px solid #000; /* чорна лінія */
+        }
+
+        .contacts a {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+            margin-right: 30px;
+        }
+
+        .contacts a:hover {
+            color: #d9534f;
+        }
+
+        .footer {
+            background-color: #f0f0f0; /* молочний фон */
+            padding: 39px;
+            border-top: 2px solid #000; /* чорна лінія */
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="container mt-5">
+    <h1 class="display-4 text-center" style="margin-top: 0px;">  Магазин етно одягу</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 100px;" href="man">Чоловічий</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 100px;" href="woman">Жіночий</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 1100px;" href="kids">Дитячий</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 100px;" href="#">Реєстрація</a>
+            </li>
+        </ul>
+    </nav>
+    {% for review in reviews %}
+    <div class="card my-3">
+        <img src="{% static review.image %}" alt="Review Image" class="card-img-top">
+        <div class="card-body">
+            <p class="card-text">Трохи про нас, Наш магазин займається продажем одягу по всьому світу. Наша мета - перевежно етно одяг. Якщо ми вас зацікавили виберіть потрібна вам категорію одягу</p>
+            <p class="card-text text-muted">тест повідомлення, посилання на розробника знизу</p>
+            <a href="https://t.me/ds0903" class="btn btn-primary telegram-button" target="_blank">Telegram</a>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="contacts">
+        <a href="#">Тут будуть контакти</a>
+        <a href="#">Тут теж будуть контакти</a>
+        {% comment %} <a href="#">І Тут будуть контакти</a> {% endcomment %}
+        <a> Пн - Пт 10:00 - 19:00
+
+            Сб - Нд 11:00 - 19:00</a>
+    </div>
+
+    <div class="footer">
+        © 2024 Магазин етно одягу. Всі права захищені.
+        <li class="nav-item">
+            <a class="nav-link" style="margin-right: 00px;" href="https://t.me/ds0903">@ds0903</a>
+        </li>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WybF0/R5X5Z9AMbQK9IbbVdU8hBDf" crossorigin="anonymous"></script>
+</body>
+</html>
