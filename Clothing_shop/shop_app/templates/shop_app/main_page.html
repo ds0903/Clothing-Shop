@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин етно одягу</title>
+    <title>Всі колекції</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
@@ -14,12 +14,16 @@
             font-family: 'Arial', sans-serif;
         }
 
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
         .navbar-nav {
             display: flex;
-            
             justify-content: center;
             width: 100%;
-            
             border-top: 2px solid #000;
         }
 
@@ -40,26 +44,23 @@
         }
 
         .card {
-            width: 60rem;
-            margin: auto;
-            margin-top: 50px;
+            margin: 20px auto;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 8px;
-            display: flex;
+            width: calc(20% - 40px); /* Adjust width to accommodate margin */
         }
 
         .card img {
-            max-width: 50%;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
             border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
 
         .card-body {
             padding: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
         .card-text {
@@ -81,9 +82,9 @@
         .contacts {
             margin-top: 50px;
             text-align: center;
-            background-color: #f0f0f0; /* молочний фон */
+            background-color: #f0f0f0;
             padding: 50px;
-            border-top: 2px solid #000; /* чорна лінія */
+            border-top: 2px solid #000;
         }
 
         .contacts a {
@@ -99,15 +100,15 @@
         }
 
         .footer {
-            background-color: #f0f0f0; /* молочний фон */
+            background-color: #f0f0f0;
             padding: 39px;
-            border-top: 2px solid #000; /* чорна лінія */
+            border-top: 2px solid #000;
             text-align: center;
         }
     </style>
 </head>
 <body class="container mt-5">
-    <h1 class="display-4 text-center" style="margin-top: 0px;">  Магазин етно одягу</h1>
+    <h1 class="display-4 text-center" style="margin-top: 0px;">Всі колекції</h1>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav">
@@ -125,22 +126,88 @@
             </li>
         </ul>
     </nav>
-    {% for review in reviews %}
-    <div class="card my-3">
-        <img src="{% static review.image %}" alt="Review Image" class="card-img-top">
-        <div class="card-body">
-            <p class="card-text">Трохи про нас, Наш магазин займається продажем одягу по всьому світу. Наша мета - перевежно етно одяг. Якщо ми вас зацікавили виберіть потрібна вам категорію одягу</p>
-            <p class="card-text text-muted">тест повідомлення, посилання на розробника знизу</p>
-            <a href="https://t.me/ds0903" class="btn btn-primary telegram-button" target="_blank">Telegram</a>
+
+    <!-- Перший ряд карток -->
+    <div class="row card-container">
+        {% for photo in cloth %}
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+            </div>
         </div>
+
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+            </div>
+        </div>
+
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <!-- Другий ряд карток -->
+    <div class="row card-container">
+        {% for photo in cloth %}
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ another_photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ another_photo.title }}</h5>
+                <p class="card-text">₴{{ another_photo.price }} UAH</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+            </div>
+        </div>
+    
+
+        {% endfor %}
+    </div>
+
     <div class="contacts">
         <a href="#">Тут будуть контакти</a>
         <a href="#">Тут теж будуть контакти</a>
-        {% comment %} <a href="#">І Тут будуть контакти</a> {% endcomment %}
         <a> Пн - Пт 10:00 - 19:00
-
             Сб - Нд 11:00 - 19:00</a>
     </div>
 
