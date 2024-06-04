@@ -84,58 +84,58 @@
     </div>
 
     <script>
-        function showCartContent() {
-            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-            let cartContent = '';
-
-            if (cartItems.length === 0) {
-                cartContent = '<p>Кошик порожній</p>';
-            } else {
-                cartItems.forEach((item, index) => {
-                    cartContent += `
-                        <div class="cart-item">
-                            <img src="${item.image}" alt="${item.title}">
-                            <div>
-                                <h3 class="cart-item-title">${item.title}</h3>
-                                <p class="cart-item-price">₴${item.price} UAH</p>
-                                <button class="btn-remove" data-index="${index}">Видалити</button>
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-
-            document.getElementById('cart-content').innerHTML = cartContent;
-
-            // Додаємо обробники подій для кнопок видалення
-            document.querySelectorAll('.btn-remove').forEach(button => {
-                button.addEventListener('click', function() {
-                    let index = this.getAttribute('data-index');
-                    removeFromCart(index);
-                });
-            });
-        }
-
-        function removeFromCart(index) {
-            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-            cartItems.splice(index, 1); // Видаляємо товар зі списку за індексом
-            localStorage.setItem('cart', JSON.stringify(cartItems));
-            showCartContent(); // Оновлюємо вміст кошика
-        }
-
-        function checkout() {
-            // Виводимо повідомлення про успішне замовлення
-            alert('Замовлення успішне!');
-
-            // Очищаємо кошик
-            localStorage.removeItem('cart');
-            
-            // Оновлюємо вміст кошика
-            showCartContent();
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
             showCartContent();
+    
+            function showCartContent() {
+                let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                let cartContent = '';
+    
+                if (cartItems.length === 0) {
+                    cartContent = '<p>Кошик порожній :( </p>';
+                } else {
+                    cartItems.forEach((item, index) => {
+                        cartContent += `
+                            <div class="cart-item">
+                                <img src="${item.image}" alt="${item.title}">
+                                <div>
+                                    <h3 class="cart-item-title">${item.title}</h3>
+                                    <p class="cart-item-price">₴${item.price} UAH</p>
+                                    <button class="btn-remove" data-index="${index}">Видалити</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+    
+                document.getElementById('cart-content').innerHTML = cartContent;
+
+                // Додаємо обробники подій для кнопок видалення
+                document.querySelectorAll('.btn-remove').forEach(button => {
+                    button.addEventListener('click', function() {
+                        let index = this.getAttribute('data-index');
+                        removeFromCart(index);
+                    });
+                });
+            }
+    
+            function removeFromCart(index) {
+                let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItems.splice(index, 1); // Видаляємо товар зі списку за індексом
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                showCartContent(); // Оновлюємо вміст кошика
+            }
+    
+            function checkout() {
+                // Виводимо повідомлення про успішне замовлення
+                alert('Замовлення успішне!');
+
+                // Очищаємо кошик
+                localStorage.removeItem('cart');
+                
+                // Оновлюємо вміст кошика
+                showCartContent();
+            }
         });
     </script>
 

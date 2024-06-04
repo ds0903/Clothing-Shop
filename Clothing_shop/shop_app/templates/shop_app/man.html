@@ -1,5 +1,189 @@
-<body>
-<html>
-<h>test man</h>
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Всі колекції</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #ddd;
+            color: #000;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            border-top: 2px solid #000;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #d9534f;
+        }
+
+        .card {
+            margin: 20px auto;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: calc(20% - 40px); /* Adjust width to accommodate margin */
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-text {
+            color: #333;
+        }
+
+        .text-muted {
+            color: #888;
+            text-transform: lowercase;
+            margin-top: 10px;
+        }
+
+        .telegram-button {
+            color: #888;
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+
+        .contacts {
+            margin-top: 50px;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-top: 2px solid #000;
+        }
+
+        .contacts a {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+            margin-right: 30px;
+        }
+
+        .contacts a:hover {
+            color: #d9534f;
+        }
+
+        .footer {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-top: 2px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="container mt-5">
+    <h1 class="display-4 text-center" style="margin-top: 0px;">Чоловіча колекція</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 100px;" href="man">Чоловічий</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 100px;" href="woman">Жіночий</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 1000px;" href="kids">Дитячий</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 10px;" href="main_page">Меню</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 100px;" href="cart">Кошик</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ряд карток -->
+    <div class="row card-container">
+        {% for photo in cloth %}
+        <div class="card">
+            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ photo.title }}</h5>
+                <p class="card-text">₴{{ photo.price }} UAH</p>
+                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+    <div class="contacts">
+        <a> Пн - Пт 10:00 - 19:00
+            Сб - Нд 11:00 - 19:00</a>
+    </div>
+
+    <div class="footer">
+        © 2024 Магазин етно одягу. Всі права захищені.
+        {% comment %} <li class="nav-item">
+            <a class="nav-link" style="margin-right: 00px;" href="https://t.me/ds0903">@ds0903</a>
+        </li> {% endcomment %}
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.add-to-cart');
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const title = this.getAttribute('data-title');
+                    const price = this.getAttribute('data-price');
+                    addToCart(title, price);
+                });
+            });
+    
+            function addToCart(title, price) {
+                // Тут можна реалізувати логіку додавання в кошик, наприклад, через AJAX або localStorage.
+                // Для прикладу використаємо localStorage
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ title, price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`Товар ${title} додано в кошик за ціною ₴${price} UAH`);
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WybF0/R5X5Z9AMbQK9IbbVdU8hBDf" crossorigin="anonymous"></script>
 </body>
 </html>

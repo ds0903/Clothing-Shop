@@ -8,6 +8,7 @@ urlpatterns = [
 
     path("admin/", admin.site.urls),
     path("", review_list, name="main_page"),
+    path("main_page", review_list, name="main_page"),
     path("man", man, name="man"),
     path("woman", woman, name="woman"),
     path("kids", kids, name="kids"),

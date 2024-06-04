@@ -83,7 +83,7 @@
             margin-top: 50px;
             text-align: center;
             background-color: #f0f0f0;
-            padding: 50px;
+            padding: 10px;
             border-top: 2px solid #000;
         }
 
@@ -101,14 +101,14 @@
 
         .footer {
             background-color: #f0f0f0;
-            padding: 39px;
+            padding: 10px;
             border-top: 2px solid #000;
             text-align: center;
         }
     </style>
 </head>
 <body class="container mt-5">
-    <h1 class="display-4 text-center" style="margin-top: 0px;">Всі колекції</h1>
+    <h1 class="display-4 text-center" style="margin-top: 0px;">Жіноча колекція</h1>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="navbar-nav">
@@ -119,7 +119,10 @@
                 <a class="nav-link" style="margin-right: 100px;" href="woman">Жіночий</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 1100px;" href="kids">Дитячий</a>
+                <a class="nav-link" style="margin-right: 1000px;" href="kids">Дитячий</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="margin-right: 10px;" href="main_page">Меню</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" style="margin-right: 100px;" href="cart">Кошик</a>
@@ -127,36 +130,9 @@
         </ul>
     </nav>
 
-    <!-- Перший ряд карток -->
+    <!-- ряд карток -->
     <div class="row card-container">
         {% for photo in cloth %}
-        <div class="card">
-            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ photo.title }}</h5>
-                <p class="card-text">₴{{ photo.price }} UAH</p>
-                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ photo.title }}</h5>
-                <p class="card-text">₴{{ photo.price }} UAH</p>
-                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ photo.title }}</h5>
-                <p class="card-text">₴{{ photo.price }} UAH</p>
-                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
-            </div>
-        </div>
-
         <div class="card">
             <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
             <div class="card-body">
@@ -169,61 +145,14 @@
         {% endfor %}
     </div>
 
-    <!-- Другий ряд карток -->
-    <div class="row card-container">
-        {% for photo in cloth %}
-        <div class="card">
-            <img src="{% static photo.image %}" alt="{{ another_photo.title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ another_photo.title }}</h5>
-                <p class="card-text">₴{{ another_photo.price }} UAH</p>
-                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ photo.title }}</h5>
-                <p class="card-text">₴{{ photo.price }} UAH</p>
-                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ photo.title }}</h5>
-                <p class="card-text">₴{{ photo.price }} UAH</p>
-                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="{% static photo.image %}" alt="{{ photo.title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ photo.title }}</h5>
-                <p class="card-text">₴{{ photo.price }} UAH</p>
-                <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}">Додати в кошик</button>
-            </div>
-        </div>
-    
-
-        {% endfor %}
-    </div>
 
     <div class="contacts">
-        <a href="#">Тут будуть контакти</a>
-        <a href="#">Тут теж будуть контакти</a>
         <a> Пн - Пт 10:00 - 19:00
             Сб - Нд 11:00 - 19:00</a>
     </div>
 
     <div class="footer">
         © 2024 Магазин етно одягу. Всі права захищені.
-        <li class="nav-item">
-            <a class="nav-link" style="margin-right: 00px;" href="https://t.me/ds0903">@ds0903</a>
-        </li>
     </div>
 
 
