@@ -1,156 +1,59 @@
-
-{% load static %}
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible"="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кошик</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #ddd;
-            color: #000;
-            font-family: 'Arial', sans-serif;
-        }
-
-        .container {
-            max-width: 800px;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-
-        .cart-item img {
-            max-width: 100px;
-            max-height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 20px;
-        }
-
-        .cart-item-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .cart-item-price {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-        }
-
-        .btn-remove {
-            background-color: #dc3545;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-remove:hover {
-            background-color: #c82333;
-        }
-
-        .btn-checkout {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-checkout:hover {
-            background-color: #218838;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        body { background-color: #ddd; color: #000; font-family: 'Arial', sans-serif; }
+        .container { max-width: 800px; }
+        .cart-item { display: flex; align-items: center; margin-bottom: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; }
+        .cart-item img { max-width: 100px; max-height: 100px; object-fit: cover; border-radius: 8px; margin-right: 20px; }
+        .cart-item-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
+        .cart-item-price { font-size: 1.25rem; margin-bottom: 10px; }
+        .btn-remove { background-color: #dc3545; color: #fff; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; }
+        .btn-remove:hover { background-color: #c82333; }
+        .btn-checkout { background-color: #28a745; color: #fff; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; }
+        .btn-checkout:hover { background-color: #218838; }
+        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); padding-top: 60px; }
+        .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; }
+        .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .close:hover, .close:focus { color: black; text-decoration: none; cursor: pointer; }
     </style>
 </head>
-
-
-
 <body class="container mt-5">
     <h1 class="display-4 text-center">Кошик</h1>
-
-    <div id="cart-content" class="mt-3"></div> <!-- Місце для відображення вмісту кошика -->
-
+    <div id="cart-content" class="mt-3"></div>
     <div class="text-center mt-3">
         <button class="btn btn-checkout" onclick="openModal()">Оформити замовлення</button>
     </div>
-
-    <!-- Модальне вікно для введення даних -->
     <div id="checkoutModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Оформлення замовлення</h2>
-            <form id="checkoutForm">
+            <form id="checkoutForm" method="post" action="{% url 'checkout' %}">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="name">Ім'я</label>
-                    <input type="text" class="form-control" id="name" required>
+                    <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Номер телефону</label>
-                    <input type="text" class="form-control" id="phone" required>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
                 </div>
+                <input type="hidden" id="cart" name="cart">
                 <button type="submit" class="btn btn-success">Підтвердити</button>
             </form>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             showCartContent();
-    
             function showCartContent() {
                 let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
                 let cartContent = '';
-    
                 if (cartItems.length === 0) {
                     cartContent = '<p>Кошик порожній :( </p>';
                 } else {
@@ -167,10 +70,7 @@
                         `;
                     });
                 }
-    
                 document.getElementById('cart-content').innerHTML = cartContent;
-
-                // Додаємо обробники подій для кнопок видалення
                 document.querySelectorAll('.btn-remove').forEach(button => {
                     button.addEventListener('click', function() {
                         let index = this.getAttribute('data-index');
@@ -178,52 +78,34 @@
                     });
                 });
             }
-    
             function removeFromCart(index) {
                 let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-                cartItems.splice(index, 1); // Видаляємо товар зі списку за індексом
+                cartItems.splice(index, 1);
                 localStorage.setItem('cart', JSON.stringify(cartItems));
-                showCartContent(); // Оновлюємо вміст кошика
+                showCartContent();
             }
-
             document.getElementById('checkoutForm').addEventListener('submit', function(event) {
                 event.preventDefault();
                 const name = document.getElementById('name').value;
                 const phone = document.getElementById('phone').value;
                 const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-                
                 if (name && phone && cartItems.length > 0) {
-                    const orderNumber = Math.floor(Math.random() * 1000000);
-                    const itemName = cartItems.map(item => item.title).join(', ');
-
-                    // Виводимо повідомлення про успішне замовлення з номером і товаром
-                    alert(`Замовлення успішне! Номер замовлення: ${orderNumber}\nТовар(и): ${itemName}\nІм'я: ${name}\nНомер телефону: ${phone}`);
-
-                    // Очищаємо кошик
-                    localStorage.removeItem('cart');
-                    
-                    // Оновлюємо вміст кошика
-                    showCartContent();
-
-                    // Закриваємо модальне вікно
-                    closeModal();
+                    document.getElementById('cart').value = JSON.stringify(cartItems);
+                    this.submit();
                 } else {
                     alert('Кошик порожній або не введені дані!');
                 }
             });
         });
-
         function openModal() {
             document.getElementById('checkoutModal').style.display = 'block';
         }
-
         function closeModal() {
             document.getElementById('checkoutModal').style.display = 'none';
         }
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WybF0/R5X5Z9AMbQK9IbbVdU8hBDf" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

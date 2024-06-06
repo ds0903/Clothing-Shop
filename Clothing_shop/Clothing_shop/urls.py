@@ -2,7 +2,8 @@
 from django.contrib import admin
 from django.urls import path
 from shop_app import views
-from shop_app.views import kids, man, review_list, woman, cart
+
+from shop_app.views import kids, man, review_list, woman, cart,checkout
 
 urlpatterns = [
 
@@ -14,5 +15,5 @@ urlpatterns = [
     path("kids", kids, name="kids"),
     path('cart', cart, name='cart'),
     path('save_order/', views.save_order, name='save_order'),
-
+    path('checkout/', checkout, name='checkout'),
 ]
