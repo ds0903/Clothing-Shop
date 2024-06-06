@@ -31,13 +31,26 @@ def cart(request):
 
     return render(request, 'shop_app/cart.html')  # Повертаємо сторінку кошика
 
+
 def kids(request):
-    reviews = [
-        {"image": "shop_app/images/audi.jpg", "comment": comment1, "date": date_name1},
-        
-        # Додайте більше відгуків, якщо потрібно
+    cloth = [
+        {"title": "Сукня для дівчинки «Дзвінка» білого кольору", "image": "shop_app/images/kids/1.jpg", "price": 2300},
+        {"title": "Вишиванка для хлопчика «Омелянчик» блакитного кольору", "image": "shop_app/images/kids/2.jpg", "price": 1499},
+        {"title": "Вишиванка для дівчинки «Мереживний розмай» білого кольору з червоно-чорною вишивкою", "image": "shop_app/images/kids/3.jpg", "price": 1200},
+        {"title": "Сукня для дівчинки «Дзвінка» червоного кольору", "image": "shop_app/images/kids/4.jpg", "price": 2300},
+        {"title": "Вишиванка для хлопчика «Кольорова» темно-синього кольору", "image": "shop_app/images/kids/5.jpg", "price": 2250},
+        {"title": "Вишиванка для хлопчика «Завитки» білого кольору", "image": "shop_app/images/kids/6.jpg", "price": 750},
+        {"title": "Футболка для дівчинки «Весняна 2» червоного кольору", "image": "shop_app/images/kids/7.jpg", "price": 350},
+        {"title": "Вишиванка для хлопчика «Отаман» чорна з білим орнаментом", "image": "shop_app/images/kids/8.jpg", "price": 1650},
+        {"title": "Вишиванка для хлопчика «Полонина» з синім орнаментом", "image": "shop_app/images/kids/9.jpg", "price": 1400},
+        {"title": "Сукня для дівчинки «Квіткова гілка» синього кольору", "image": "shop_app/images/kids/10.jpg", "price": 2000},
+        {"title": "Вишиванка для хлопчика «Отаман» біла з червоним орнаментом", "image": "shop_app/images/kids/11.jpg", "price": 1650},
+        {"title": "Вишиванка для дівчинки «Мереживні сни» рожевого кольору", "image": "shop_app/images/kids/12.jpg", "price": 1700},
+        {"title": "Вишиванка для хлопчика «Грація» зеленого кольору", "image": "shop_app/images/kids/13.jpg", "price": 950},
+        {"title": "Вишиванка для хлопчика «Грація» темно-синього кольору", "image": "shop_app/images/kids/14.jpg", "price": 950},
+        {"title": "Вишитий комбінезон для дівчинки «Розмай» кольору охри", "image": "shop_app/images/kids/15.jpg", "price": 1900},
     ]
-    return render(request, "shop_app/kids.html", {"reviews": reviews})
+    return render(request, "shop_app/kids.html", {"cloth": cloth})
 
 
 def woman(request):
