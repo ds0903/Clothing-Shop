@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "==4.2.11"
 django-bootstrap4 = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 flake8 = "*"
