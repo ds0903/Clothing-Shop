@@ -1,5 +1,5 @@
 venv/
 Pipfile.lock
 .env
-# Clothing-Shop/issues/migrations/
+Clothing-Shop/shop_app/migrations/
 # src/users/migrations/

@@ -16,15 +16,13 @@
 
         .navbar-nav {
             display: flex;
-            
             justify-content: center;
             width: 100%;
-            
             border-top: 2px solid #000;
         }
 
         .navbar-nav .nav-item {
-            margin-right: 10px;
+            margin-right: 30px; /* Increased margin for more space */
             margin-top: 20px;
         }
 
@@ -40,19 +38,21 @@
         }
 
         .card {
-            width: 100rem;
-            margin: auto;
-            margin-top: 100px;
+            max-width: 800px; /* Set a max width */
+            margin: 50px auto; /* Center the card */
             background-color: #f9f9f9;
             border: 2px solid #ddd;
             border-radius: 8px;
             display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the image horizontally */
         }
 
         .card img {
-            max-width: 50%;
+            width: 100%; /* Set width to 100% of the card */
+            max-width: 100%; /* Ensure it doesn't exceed the card's width */
             border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
 
         .card-body {
@@ -60,6 +60,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            text-align: center; /* Center the text */
         }
 
         .card-text {
@@ -75,15 +76,15 @@
         .telegram-button {
             color: #888;
             margin-top: 10px;
-            align-self: flex-end;
+            align-self: center; /* Center the button */
         }
 
         .contacts {
             margin-top: 150px;
             text-align: center;
-            background-color: #f0f0f0; /* молочний фон */
+            background-color: #f0f0f0;
             padding: 10px;
-            border-top: 2px solid #000; /* чорна лінія */
+            border-top: 2px solid #000;
         }
 
         .contacts a {
@@ -107,24 +108,25 @@
     </style>
 </head>
 <body class="container mt-5">
-    <h1 class="display-4 text-center" style="margin-top: 0px;">  Магазин етно одягу</h1>
+    <h1 class="display-4 text-center" style="margin-top: 0px;">Магазин етно одягу</h1>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 100px;" href="man">Чоловічий</a>
+                <a class="nav-link" style="margin-right: 20px;" href="man">Чоловічий</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 100px;" href="woman">Жіночий</a>
+                <a class="nav-link" style="margin-right: 20px;" href="woman">Жіночий</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 1100px;" href="kids">Дитячий</a>
+                <a class="nav-link" style="margin-right: 20px;" href="kids">Дитячий</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 100px;" href="cart">Кошик</a>
+                <a class="nav-link" style="margin-right: 20px;" href="cart">Кошик</a>
             </li>
         </ul>
     </nav>
+
     {% for review in reviews %}
     <div class="card my-3">
         <img src="{% static review.image %}" alt="Review Image" class="card-img-top">
@@ -143,10 +145,11 @@
                 
                 Долучайтеся до нашої спільноти та вдягайтеся з гордістю у справжнє українське! Відкрийте для себе красу і чарівність етно одягу разом з нами.</p>
             <p class="card-text text-muted">Посилання на наші соціальні мережі знизу</p>
-            <a href="https://t.me/ds0903" class="btn btn-primary telegram-button" target="_blank">Telegram</a>
+            <a href="https://t.me/anastasiya_hey" class="btn btn-primary telegram-button" target="_blank">Telegram</a>
         </div>
     </div>
-    {% endfor %}``
+    {% endfor %}
+
     <div class="contacts">
         <a> Пн - Пт 10:00 - 19:00
             Сб - Нд 11:00 - 19:00</a>
@@ -161,3 +164,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WybF0/R5X5Z9AMbQK9IbbVdU8hBDf" crossorigin="anonymous"></script>
 </body>
 </html>
+

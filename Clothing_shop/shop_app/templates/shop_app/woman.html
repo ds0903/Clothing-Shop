@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Всі колекції</title>
+    <title>Жіноча колекція</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         body {
@@ -22,9 +22,11 @@
 
         .navbar-nav {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Вирівнювання по центру */
             width: 100%;
             border-top: 2px solid #000;
+            padding-left: 0; /* Прибираємо відступи */
+            padding-right: 0; /* Прибираємо відступи */
         }
 
         .navbar-nav .nav-item {
@@ -102,7 +104,7 @@
         .footer {
             background-color: #f0f0f0;
             padding: 10px;
-            border-top: 2px solid #000;
+            border-top: 2px солід #000;
             text-align: center;
         }
     </style>
@@ -111,21 +113,21 @@
     <h1 class="display-4 text-center" style="margin-top: 0px;">Жіноча колекція</h1>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mx-auto"> <!-- Додав клас mx-auto для вирівнювання по центру -->
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 100px;" href="man">Чоловічий</a>
+                <a class="nav-link" style="margin-right: 20px;" href="man">Чоловічий</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 100px;" href="woman">Жіночий</a>
+                <a class="nav-link" style="margin-right: 20px;" href="woman">Жіночий</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 1000px;" href="kids">Дитячий</a>
+                <a class="nav-link" style="margin-right: 20px;" href="kids">Дитячий</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 10px;" href="main_page">Меню</a>
+                <a class="nav-link" style="margin-right: 20px;" href="main_page">Меню</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="margin-right: 100px;" href="cart">Кошик</a>
+                <a class="nav-link" style="margin-right: 20px;" href="cart">Кошик</a>
             </li>
         </ul>
     </nav>
@@ -141,10 +143,8 @@
                 <button class="btn btn-primary add-to-cart" data-title="{{ photo.title }}" data-price="{{ photo.price }}" data-image="{% static photo.image %}">Додати в кошик</button>
             </div>
         </div>
-
         {% endfor %}
     </div>
-
 
     <div class="contacts">
         <a> Пн - Пт 10:00 - 19:00
@@ -154,8 +154,6 @@
     <div class="footer">
         © 2024 Магазин етно одягу. Всі права захищені.
     </div>
-
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -183,3 +181,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WybF0/R5X5Z9AMbQK9IbbVdU8hBDf" crossorigin="anonymous"></script>
 </body>
 </html>
+
